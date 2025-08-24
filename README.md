@@ -131,7 +131,7 @@ This allows you to test the model without needing external tools.
 ### Features
 - Web form for entering wine properties
 - Displays prediction and rounded score
-- Runs on the same Flask app
+- The HTML form is served from the root endpoint (/) and uses the same Flask backend for predictions. This allows both API and web form testing from the same app, whether running locally, in Docker, or on Heroku.
 
 ### Example Input (Web Form)
 
@@ -199,4 +199,5 @@ This project demonstrates:
 - Deploying to Heroku with troubleshooting steps
 
 With this guide, you can replicate the process on your own machine or deploy your own ML model to the cloud.
+
 
