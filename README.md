@@ -87,26 +87,6 @@ Content-Type: application/json
 
 ---
 
-## Wine Quality Prediction App
-
-In addition to the raw API, the project also provides a simple HTML form for manual input.
-This allows you to test the model without needing external tools.
-
-### Features
-- Web form for entering wine properties
-- Displays prediction and rounded score
-- Runs on the same Flask app
-
-### Example Input (Web Form)
-
-Example request:
-<img width="322" height="307" alt="image" src="https://github.com/user-attachments/assets/29b2df1b-7948-463d-89c9-6312ce612fa3" />
-
-Example response:
-<img width="460" height="50" alt="image" src="https://github.com/user-attachments/assets/f0efdd27-ba66-461b-bbe8-8136b7e6e755" />
-
----
-
 ## Deployment on Heroku
 The app can be deployed online using Heroku + Docker.
 
@@ -140,6 +120,26 @@ heroku open -a wine-quality
 ```
 
 ✅ Live demo: https://wine-quality-2ac0aee51517.herokuapp.com
+
+---
+
+## Wine Quality Prediction App
+
+In addition to the raw API, the project also provides a simple HTML form for manual input.
+This allows you to test the model without needing external tools.
+
+### Features
+- Web form for entering wine properties
+- Displays prediction and rounded score
+- Runs on the same Flask app
+
+### Example Input (Web Form)
+
+Example request:
+<img width="322" height="307" alt="image" src="https://github.com/user-attachments/assets/29b2df1b-7948-463d-89c9-6312ce612fa3" />
+
+Example response:
+<img width="460" height="50" alt="image" src="https://github.com/user-attachments/assets/f0efdd27-ba66-461b-bbe8-8136b7e6e755" />
 
 ---
 
@@ -199,3 +199,4 @@ This project demonstrates:
 - Deploying to Heroku with troubleshooting steps
 
 With this guide, you can replicate the process on your own machine or deploy your own ML model to the cloud.
+
