@@ -1,5 +1,11 @@
 # 🍷 Wine Quality Prediction
 
+![Python](https://img.shields.io/badge/Python-3.11-blue) 
+![Flask](https://img.shields.io/badge/Flask-API-lightgrey)
+![Docker](https://img.shields.io/badge/Docker-Container-blue) 
+![Heroku](https://img.shields.io/badge/Heroku-Deployed-purple)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange)
+
 This project builds a Machine Learning model to predict **wine quality** (0–10) using the [Wine Quality Dataset](https://archive.ics.uci.edu/ml/datasets/wine+quality) from UCI.  
 The model is trained with **Linear Regression**, containerized with **Docker**, and deployed to **Heroku**.  
 
@@ -199,5 +205,6 @@ This project demonstrates:
 - Deploying to Heroku with troubleshooting steps
 
 With this guide, you can replicate the process on your own machine or deploy your own ML model to the cloud.
+
 
 
