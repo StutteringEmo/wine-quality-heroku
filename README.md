@@ -30,6 +30,8 @@ python app.py
 ```
 App runs at: http://127.0.0.1:5000
 
+---
+
 ## Run with Docker
 
 ### Build the image
@@ -43,6 +45,12 @@ docker run -p 5000:5000 wine-quality-app
 ```
 App available at: http://127.0.0.1:5000
 
+---
+
+## Deployment on Heroku
+Deployed Here: https://wine-quality-2ac0aee51517.herokuapp.com
+
+---
 ## API Usage
 
 ### Base endpoint
