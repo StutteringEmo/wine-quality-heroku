@@ -58,11 +58,16 @@ Content-Type: application/json
 ```
 
 Example request:
+```json
 {
   "features": [7.4, 0.70, 0.00, 1.9, 0.076, 11.0, 34.0, 0.9978, 3.51, 0.56, 9.4]
 }
+```
 
 Example response:
+```json
 {
   "prediction": 5.0
 }
+```
+
