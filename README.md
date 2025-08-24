@@ -15,12 +15,10 @@ The project demonstrates the full workflow of:
 ## 📂 Repository Structure
 - `Assignment#5_ANA680.ipynb` → Jupyter Notebook (EDA, training, evaluation)  
 - `wine_quality_model.pkl` → Trained scikit-learn model (serialized with pickle)
-- `app.py` → Flask app that serves predictions via:
-  - `/predict` (API endpoint for JSON input)
-  - Web form UI for manual input
+- `app.py` → Flask API for serving predictions and web form
 - `requirements.txt` → Python dependencies
 - `Dockerfile` → Instructions for building the Docker container
-- `Procfile` → Tells Heroku how to run the app
+- `Procfile` → Heroku entry point
 
 ---
 
@@ -28,22 +26,20 @@ The project demonstrates the full workflow of:
 
 ### 1. Clone the Repository
 
-Download the code from GitHub:
+Clone this repository and move into the project directory:
 ```bash
 git clone https://github.com/StutteringEmo/wine-quality-ml.git
 cd wine-quality-ml
 ```
 
 ### 2. Local Python Run
-If you just want to run it locally with Python (no Docker):
+Install dependencies and run the Flask app directly:
 ```bash
 pip install -r requirements.txt
 python app.py
 ```
 ➡ Open your browser at: http://127.0.0.1:5000
-- You’ll see a simple web form where you can input wine parameters.
-- Predictions will be displayed on the page.
-- The API can also be called programmatically at /predict with JSON input.
+This is useful if you just want to test the project locally without Docker or Heroku.
 
 ---
 
@@ -63,32 +59,8 @@ docker run -p 5000:5000 wine-quality-app
 
 ---
 
-## Deployment on Heroku
-Heroku lets you deploy the containerized app to the cloud.
-
-Steps performed:
-
-1. Created a new Heroku app (wine-quality)
-2. Set the stack to container:
-```bash
-heroku stack:set container -a wine-quality
-```
-
-3. Built and pushed the Docker image to Heroku registry:
-```bash
-docker buildx build --platform linux/amd64 -t registry.heroku.com/wine-quality/web --push .
-```
-
-4. Released the container:
-```bash
-heroku container:release web -a wine-quality
-```
-
-✅ Live demo: https://wine-quality-2ac0aee51517.herokuapp.com
-
----
-
 ## API Usage
+Once the app is running (locally or on Heroku), you can interact with the API.
 
 ### Base endpoint
 ```http
@@ -117,14 +89,13 @@ Content-Type: application/json
 
 ## Wine Quality Prediction App
 
-This project is a Machine Learning model deployment using Flask + Docker + Heroku.
-It predicts wine quality based on physicochemical properties.
+In addition to the raw API, the project also provides a simple HTML form for manual input.
+This allows you to test the model without needing external tools.
 
 ### Features
-- Flask API for predictions (/predict)
-- Simple web form UI for manual input
-- Dockerized for portability
-- Deployed on Heroku
+- Web form for entering wine properties
+- Displays prediction and rounded score
+- Runs on the same Flask app
 
 ### Example Input (Web Form)
 
@@ -136,16 +107,95 @@ Example response:
 
 ---
 
+## Deployment on Heroku
+The app can be deployed online using Heroku + Docker.
+
+Steps performed:
+
+1. Set the stack to container:
+```bash
+heroku stack:set container -a wine-quality
+```
+
+2. heroku container:login
+```bash
+heroku container:login
+```
+
+3. Build and push the Docker image to Heroku registry:
+```bash
+docker buildx build --platform linux/amd64 \
+  -t registry.heroku.com/wine-quality/web \
+  --provenance=false --push .
+```
+
+4. Release the container:
+```bash
+heroku container:release web -a wine-quality
+```
+
+5. Open the deployed app:
+```bash
+heroku open -a wine-quality
+```
+
+✅ Live demo: https://wine-quality-2ac0aee51517.herokuapp.com
+
+---
+
+## Troubleshooting
+
+Here are some common issues and fixes:
+
+1. Heroku error: manifest unknown or unsupported
+Cause: Image built with wrong platform or provenance enabled.
+Fix: Use --platform linux/amd64 --provenance=false in your docker buildx command.
+
+```bash
+docker buildx build --platform linux/amd64 \
+  -t registry.heroku.com/wine-quality/web \
+  --provenance=false --push .
+```
+
+2. Heroku error: H81 Blank App / 502
+Cause: App is deployed but not starting properly.
+Fix: Ensure your Dockerfile CMD is correct:
+
+```dockerfile
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+```
+- Also confirm your Flask app is named app in app.py.
+
+3. Version mismatch warning in scikit-learn
+Cause: You trained with one version and deployed with another.
+Fix: Pin scikit-learn in requirements.txt (same version as your training environment), e.g.:
+
+```ini
+scikit-learn==1.5.1
+```
+
+4. PowerShell confusion (import sklearn)
+Remember: PowerShell is not Python. To check library versions, use:
+
+```bash
+python -c "import sklearn; print(sklearn.__version__)"
+```
+
+5. Docker cache issues
+If rebuilds don’t seem to update, clear cache:
+
+```bash
+docker builder prune
+```
+
+---
+
 ## Summary
 
-This repo demonstrates a full ML deployment pipeline:
+This project demonstrates:
+- Training and saving an ML model
+- Serving predictions via Flask API + web form
+- Containerizing with Docker
+- Deploying to Heroku with troubleshooting steps
 
-1. Train ML model → Save with pickle
-2. Build API + UI → Flask app
-3. Containerize → Docker
-4. Deploy → Heroku
-
-With this setup, you can:
-- Run locally with Python
-- Run in Docker for portability
-- Deploy to Heroku for public access
+With this guide, you can replicate the process on your own machine or deploy your own ML model to the cloud.
