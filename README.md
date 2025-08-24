@@ -57,17 +57,21 @@ POST /predict
 Content-Type: application/json
 ```
 
+## Wine Quality Prediction App
+
+This project is a Machine Learning model deployment using Flask + Docker + Heroku.
+It predicts wine quality based on physicochemical properties.
+
+### Features
+- Flask API for predictions (/predict)
+- Simple web form UI for manual input
+- Dockerized for portability
+- Deployed on Heroku
+
+### Example Input (Web Form)
+
 Example request:
-```json
-{
-  "features": [7.4, 0.70, 0.00, 1.9, 0.076, 11.0, 34.0, 0.9978, 3.51, 0.56, 9.4]
-}
-```
+<img width="322" height="307" alt="image" src="https://github.com/user-attachments/assets/29b2df1b-7948-463d-89c9-6312ce612fa3" />
 
 Example response:
-```json
-{
-  "prediction": 5.0
-}
-```
-
+<img width="460" height="50" alt="image" src="https://github.com/user-attachments/assets/f0efdd27-ba66-461b-bbe8-8136b7e6e755" />
