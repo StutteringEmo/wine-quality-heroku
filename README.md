@@ -146,7 +146,7 @@ this project is also configured to deploy automatically using **GitHub Actions**
   4. Release container on Heroku  
 
 Once the workflow completes, the app is rebuilt and redeployed automatically.  
-- Note: The Heroku Activity log may not always show GitHub-triggered redeploys,  
+-- Note: The Heroku Activity log may not always show GitHub-triggered redeploys,  
 but the app is updated successfully and remains fully functional.
 
 ---
@@ -227,3 +227,4 @@ This project demonstrates:
 - Deploying to Heroku with troubleshooting steps
 
 With this guide, you can replicate the process on your own machine or deploy your own ML model to the cloud.
+
