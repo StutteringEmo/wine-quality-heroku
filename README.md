@@ -130,6 +130,27 @@ heroku open -a wine-quality
 
 ---
 
+---
+
+## 🔄 CI/CD with GitHub Actions
+
+In addition to manual deployment with Docker and Heroku CLI,  
+this project is also configured to deploy automatically using **GitHub Actions**.
+
+- Workflow file: `.github/workflows/deploy.yml`  
+- Trigger: any push to the `main` branch  
+- Steps:  
+  1. Checkout repository  
+  2. Log in to Heroku Container Registry  
+  3. Build and push Docker image to Heroku  
+  4. Release container on Heroku  
+
+Once the workflow completes, the app is rebuilt and redeployed automatically.  
+- Note: The Heroku Activity log may not always show GitHub-triggered redeploys,  
+but the app is updated successfully and remains fully functional.
+
+---
+
 ## Wine Quality Prediction App
 
 In addition to the raw API, the project also provides a simple HTML form for manual input.
@@ -206,7 +227,3 @@ This project demonstrates:
 - Deploying to Heroku with troubleshooting steps
 
 With this guide, you can replicate the process on your own machine or deploy your own ML model to the cloud.
-
-
-
-
